@@ -1,9 +1,4 @@
-.calc-row {
+.game-card {
     height: 100vh;
-    font-family: 'Share Tech Mono', monospace;
-}
-
-.input-window {
-    text-align: end;
-    font-size: x-large;
+    font-family: 'Open Sans', monospace;
 }

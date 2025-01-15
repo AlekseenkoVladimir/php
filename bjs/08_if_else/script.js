@@ -1,69 +1,46 @@
-const inputWindow = document.querySelector("#inputWindow");
-const buttons = document.querySelector(".buttons");
-const nums = document.querySelector(".num");
-let firstNum = null;
-let secondNum = null;
-let startSecondNum = false;
-let number;
-let operand = null;
-const operators = '+-×÷√=';
+let minValue = parseInt(prompt('Минимальное знание числа для игры','0'));
+let maxValue = parseInt(prompt('Максимальное знание числа для игры','100'));
+alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+let answerNumber  = Math.floor((minValue + maxValue) / 2);
+let orderNumber = 1;
+let gameRun = true;
 
-buttons.addEventListener("click", function (event) {
-  target = event.target;
-  char = target.textContent;
-  if (operators.includes(char)) {
-    operand = char;
-  }
-  if (target.classList.value.includes("num")) {
-    makeNumber(char);
-  }
-  if (!target.classList.value.includes("num")) {
-    readNumber();
-    if (char != '=' && !startSecondNum) {
-      startSecondNum = false;
-      firstNum = inputWindow.value;
-      secondNum = null;
+const orderNumberField = document.getElementById('orderNumberField');
+const answerField = document.getElementById('answerField');
+
+orderNumberField.innerText = orderNumber;
+answerField.innerText = `Вы загадали число ${answerNumber }?`;
+
+document.getElementById('btnRetry').addEventListener('click', function () {
+    minValue = 0;
+    maxValue = 100;
+    orderNumber = 0;
+})
+
+document.getElementById('btnOver').addEventListener('click', function () {
+    if (gameRun){
+        if (minValue === maxValue){
+            const phraseRandom = Math.round( Math.random());
+            const answerPhrase = (phraseRandom === 1) ?
+                `Вы загадали неправильное число!\n\u{1F914}` :
+                `Я сдаюсь..\n\u{1F92F}`;
+
+            answerField.innerText = answerPhrase;
+            gameRun = false;
+        } else {
+            minValue = answerNumber  + 1;
+            answerNumber  = Math.floor((minValue + maxValue) / 2);
+            orderNumber++;
+            orderNumberField.innerText = orderNumber;
+            answerField.innerText = `Вы загадали число ${answerNumber }?`;
+        }
     }
-    if (char === '=') {
-      console.log('Well');
+})
+
+document.getElementById('btnEqual').addEventListener('click', function () {
+    if (gameRun){
+        answerField.innerText = `Я всегда угадываю\n\u{1F60E}`
+        gameRun = false;
     }
-  }
-});
-
-
-function readNumber() {
-    if (firstNum === null) {
-        firstNum = inputWindow.value;
-        startSecondNum = true;
-    } else if (secondNum === null) {
-        secondNum = inputWindow.value;
-    }
-}
-
-
-function makeNumber(char) {
-  if (inputWindow.value === "0" || startSecondNum) {
-    inputWindow.value = char;
-    startSecondNum = false;
-  } else {
-    inputWindow.value += char;
-  }
-}
-
-
-function addition(firstNum, secondNum) {
-  return firstNum + secondNum;
-}
-
-function subtraction(firstNum, secondNum) {
-  return firstNum - secondNum;
-}
-
-function multiplication(firstNum, secondNum) {
-  return firstNum * secondNum;
-}
-
-function division(firstNum, secondNum) {
-  return Math.round(firstNum / secondNum * 1e2) / 1e2;
-}
+})
 
