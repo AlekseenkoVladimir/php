@@ -6,3 +6,6 @@
 *.njsproj
 *.sln
 *.sw?
+/readme.md
+/proba.html
+*копия.js
