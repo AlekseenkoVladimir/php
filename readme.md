@@ -1,5 +1,3 @@
-https://alekseenkovladimir.github.io/php/bjs/08_if_else/
-
 # Модуль 8. Базовый JS. Условия
 
 Первое практическое задание по JavaScript на курсе "Профессия Fullstack веб-разработчик на JavaScript и PHP"  школы SkillFactory
