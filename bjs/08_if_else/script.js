@@ -1,7 +1,7 @@
 const minValueOption = document.getElementById("min-number");
 const maxValueOption = document.getElementById("max-number");
-let minValue = 0;
-let maxValue = 100;
+let minValue = parseInt(minValueOption.value);
+let maxValue = parseInt(maxValueOption.value);
 let answerNumber = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
