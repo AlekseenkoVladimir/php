@@ -1,4 +1,13 @@
 .game-card {
-    height: 100vh;
+    height: 80vh;
     font-family: 'Open Sans', monospace;
+}
+
+.text-color {
+    color: red;
+    font-weight: 700;
+}
+.minRange, .maxRange {
+    color: red;
+    font-weight: 700;
 }
