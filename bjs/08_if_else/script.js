@@ -1,11 +1,3 @@
-// let minValue = parseInt(prompt("Минимальное значение числа для игры", "0")) || 0;
-// let maxValuePrompt = prompt("Максимальное значение числа для игры", "100");
-// let maxValue = maxValuePrompt === "0" ? 0 : parseInt(maxValuePrompt) || 100;
-// minValue < -999 ? (minValue = -999) : (minValue = minValue);
-// maxValue > 999 ? (maxValue = 999) : (maxValue = maxValue);
-// alert(
-//   `Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`
-// );
 const minValueOption = document.getElementById("min-number");
 const maxValueOption = document.getElementById("max-number");
 let minValue = 0;
@@ -48,23 +40,13 @@ minValueOption.onchange = () => {
 maxValueOption.onchange = () => {
   maxValue = parseInt(maxValueOption.value);
   maxValue < minValue ? alert('Нельзя выбрать максимум меньше минимума') || (maxValue = minValue) : maxValue = maxValue;
-  console.log(maxValue);
   answerNumber = Math.floor((minValue + maxValue) / 2);
   answerField.innerHTML = `Вы загадали число <br><span class="text-color">${answerNumber}</span>?`;
   maxRange.forEach((e) => (e.innerHTML = maxValue));
 };
-console.log(minValueOption.value, maxValueOption.value);
 
 document.getElementById("btnRetry").addEventListener("click", function () {
   alert(`Начнём заново! \u{1F61C}`);
-  // minValue = parseInt(prompt("Минимальное значение числа для игры", "0")) || 0;
-  // let maxValuePrompt = prompt("Максимальное значение числа для игры", "100");
-  // let maxValue = maxValuePrompt === "0" ? 0 : parseInt(maxValuePrompt) || 100;
-  // minValue < -999 ? (minValue = -999) : (minValue = minValue);
-  // maxValue > 999 ? (maxValue = 999) : (maxValue = maxValue);
-  // alert(
-  //   `Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`
-  // );
   minValue = parseInt(minValueOption.value);
   maxValue = parseInt(maxValueOption.value);
   answerNumber = Math.floor((minValue + maxValue) / 2);
@@ -235,7 +217,6 @@ document.getElementById("btnOver").addEventListener("click", function () {
       // КОНЕЦ число прописью
       const answerNumberText =
         answerNumberStr.length < 20 ? answerNumberStr : answerNumber;
-      console.log(answerNumberText, answerNumber);
 
       orderNumber++;
       orderNumberField.innerText = orderNumber;
@@ -277,8 +258,6 @@ document.getElementById("btnOver").addEventListener("click", function () {
 });
 
 document.getElementById("btnLess").addEventListener("click", function () {
-  console.log("btnLess");
-
   if (gameRun) {
     if (minValue === maxValue) {
       const phraseRandom = Math.round(Math.random());
@@ -442,7 +421,6 @@ document.getElementById("btnLess").addEventListener("click", function () {
       // КОНЕЦ число прописью
       const answerNumberText =
         answerNumberStr.length < 20 ? answerNumberStr : answerNumber;
-      console.log(answerNumberText, answerNumber);
       switch (phraseNumber) {
         case 1:
           answerField.innerHTML = `Число <br><span class="text-color">${answerNumberText}</span><br>стало вашим тайным выбором ?`;
