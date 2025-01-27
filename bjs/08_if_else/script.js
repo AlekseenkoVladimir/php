@@ -22,8 +22,8 @@ for (let i = 999; i > -1000; i--) {
   option_max.innerText = i;
   option_min.value = i;
   option_max.value = i;
-  i === 0 ? option_min.setAttribute("selected", "") : null;
-  i === 100 ? option_max.setAttribute("selected", "") : null;
+  i === -999 ? option_min.setAttribute("selected", "") : null;
+  i === 999 ? option_max.setAttribute("selected", "") : null;
 
   minValueOption.appendChild(option_min);
   maxValueOption.appendChild(option_max);

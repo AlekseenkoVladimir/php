@@ -1,6 +1,6 @@
 # Модуль 8. Базовый JS. Условия
 
-Первое практическое задание по JavaScript на курсе "Профессия Fullstack веб-разработчик на JavaScript и PHP"  школы SkillFactory
+Практические задания по JavaScript на курсе "Профессия Fullstack веб-разработчик на JavaScript и PHP"  школы SkillFactory
 
 ## Используемые технологии
 
