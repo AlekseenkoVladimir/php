@@ -35,36 +35,46 @@ const personGenerator = {
             "id_10": "Андрей"
         }
     }`,
+    firstNameFemaleJson: `{
+        "count": 10,
+        "list": {
+            "id_1": "Анна",
+            "id_2": "Екатерина",
+            "id_3": "Мария",
+            "id_4": "Дарья",
+            "id_5": "Ольга",
+            "id_6": "Наталья",
+            "id_7": "Анастасия",
+            "id_8": "Елена",
+            "id_9": "Виктория",
+            "id_10": "Татьяна"
+        }
+    }`,
 
-    GENDER_MALE: 'Мужчина',
-    GENDER_FEMALE: 'Женщина',
+  GENDER_MALE: "Мужчина",
+  GENDER_FEMALE: "Женщина",
 
-    randomIntNumber: (max = 1, min = 0) => Math.floor(Math.random() * (max - min + 1) + min),
+  randomIntNumber: (max = 1, min = 0) =>
+    Math.floor(Math.random() * (max - min + 1) + min),
 
-    randomValue: function (json) {
-        const obj = JSON.parse(json);
-        const prop = `id_${this.randomIntNumber(obj.count, 1)}`;  // this = personGenerator
-        return obj.list[prop];
-    },
+  randomValue: function (json) {
+    const obj = JSON.parse(json);
+    const prop = `id_${this.randomIntNumber(obj.count, 1)}`; // this = personGenerator
+    return obj.list[prop];
+  },
 
-    randomFirstName: function() {
+  randomFirstName: function () {
+    return this.randomValue(this.firstNameMaleJson);
+  },
 
-        return this.randomValue(this.firstNameMaleJson);
+  randomSurname: function () {
+    return this.randomValue(this.surnameJson);
+  },
 
-    },
-
-
-     randomSurname: function() {
-
-        return this.randomValue(this.surnameJson);
-
-    },
-
-
-    getPerson: function () {
-        this.person = {};
-        // this.person.gender = this.randomGender();
-        this.person.firstName = this.randomFirstName();
-        return this.person;
-    }
+  getPerson: function () {
+    this.person = {};
+    // this.person.gender = this.randomGender();
+    this.person.firstName = this.randomFirstName();
+    return this.person;
+  },
 };

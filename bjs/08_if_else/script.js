@@ -33,7 +33,9 @@ for (let i = 999; i > -1000; i--) {
 
 minValueOption.onchange = () => {
   minValue = parseInt(minValueOption.value);
-  minValue > maxValue ? alert('Нельзя выбрать минимум больше максимума') || (minValue = maxValue) : minValue = minValue;
+  minValue > maxValue
+    ? alert("Нельзя выбрать минимум больше максимума") || (minValue = maxValue)
+    : (minValue = minValue);
   answerNumber = Math.floor((minValue + maxValue) / 2);
   answerField.innerHTML = `Вы загадали число <br><span class="text-color">${answerNumber}</span>?`;
   minRange.forEach((e) => (e.innerHTML = minValue));
@@ -41,7 +43,9 @@ minValueOption.onchange = () => {
 
 maxValueOption.onchange = () => {
   maxValue = parseInt(maxValueOption.value);
-  maxValue < minValue ? alert('Нельзя выбрать максимум меньше минимума') || (maxValue = minValue) : maxValue = maxValue;
+  maxValue < minValue
+    ? alert("Нельзя выбрать максимум меньше минимума") || (maxValue = minValue)
+    : (maxValue = maxValue);
   answerNumber = Math.floor((minValue + maxValue) / 2);
   answerField.innerHTML = `Вы загадали число <br><span class="text-color">${answerNumber}</span>?`;
   maxRange.forEach((e) => (e.innerHTML = maxValue));
@@ -72,189 +76,13 @@ document.getElementById("btnOver").addEventListener("click", function () {
     } else {
       minValue = answerNumber + 1;
       answerNumber = Math.floor((minValue + maxValue) / 2);
-      // число прописью
-      const absAnswerNumber = Math.abs(answerNumber);
-      let units = absAnswerNumber % 20;
-      let tens = (absAnswerNumber % 100) - units;
-      let hundreds = (absAnswerNumber % 1000) - units - tens;
-      let answerNumberStr;
-      // hundreds
-      switch (hundreds) {
-        case 100:
-          hundreds = "сто";
-          break;
-        case 200:
-          hundreds = "двести";
-          break;
-        case 300:
-          hundreds = "триста";
-          break;
-        case 400:
-          hundreds = "четыреста";
-          break;
-        case 500:
-          hundreds = "пятьсот";
-          break;
-        case 600:
-          hundreds = "шестьсот";
-          break;
-        case 700:
-          hundreds = "семьсот";
-          break;
-        case 800:
-          hundreds = "восемьсот";
-          break;
-        case 900:
-          hundreds = "девятьсот";
-          break;
-        default:
-          hundreds = "";
-          break;
-      }
-
-      // tens
-      switch (tens) {
-        case 20:
-          tens = "двадцать";
-          break;
-        case 30:
-          tens = "тридцать";
-          break;
-        case 40:
-          tens = "сорок";
-          break;
-        case 50:
-          tens = "пятьдесят";
-          break;
-        case 60:
-          tens = "шестьдесят";
-          break;
-        case 70:
-          tens = "семьдесят";
-          break;
-        case 80:
-          tens = "восемьдесят";
-          break;
-        case 90:
-          tens = "девяносто";
-          break;
-        default:
-          tens = "";
-          break;
-      }
-
-      // units
-
-      switch (units) {
-        case 1:
-          units = "один";
-          break;
-        case 2:
-          units = "два";
-          break;
-        case 3:
-          units = "три";
-          break;
-        case 4:
-          units = "четыре";
-          break;
-        case 5:
-          units = "пять";
-          break;
-        case 6:
-          units = "шесть";
-          break;
-        case 7:
-          units = "семь";
-          break;
-        case 8:
-          units = "восемь";
-          break;
-        case 9:
-          units = "девять";
-          break;
-        case 10:
-          units = "десять";
-          break;
-        case 11:
-          units = "одиннадцать";
-          break;
-        case 12:
-          units = "двенадцать";
-          break;
-        case 13:
-          units = "тринадцать";
-          break;
-        case 14:
-          units = "четырнадцать";
-          break;
-        case 15:
-          units = "пятнадцать";
-          break;
-        case 16:
-          units = "шестнадцать";
-          break;
-        case 17:
-          units = "семьнадцать";
-          break;
-        case 18:
-          units = "восемьнадцать";
-          break;
-        case 19:
-          units = "девятнадцать";
-          break;
-        default:
-          units = "";
-          break;
-      }
-      if (answerNumber < 20) {
-        answerNumberStr = units;
-      } else if (answerNumber < 100) {
-        answerNumberStr = tens + " " + units;
-      } else if (answerNumber < 1000) {
-        answerNumberStr = hundreds + " " + tens + " " + units;
-      }
-      answerNumberStr =
-        answerNumber < 0 ? "минус " + answerNumberStr : answerNumberStr;
-      // КОНЕЦ число прописью
+      const answerNumberStr = numberToString(answerNumber);
       const answerNumberText =
         answerNumberStr.length < 20 ? answerNumberStr : answerNumber;
 
       orderNumber++;
       orderNumberField.innerText = orderNumber;
-      const phraseNumber = Math.ceil(Math.random() * 9);
-      switch (phraseNumber) {
-        case 1:
-          answerField.innerHTML = `Число <br><span class="text-color">${answerNumberText}</span><br>стало вашим тайным выбором ?`;
-          break;
-        case 2:
-          answerField.innerHTML = `Наверое, это число — <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 3:
-          answerField.innerHTML = `Вы, похоже, задумали цифру <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 4:
-          answerField.innerHTML = `Ваше число — <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 5:
-          answerField.innerHTML = `Вы остановились на числе <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 6:
-          answerField.innerHTML = `Вы задумали число <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 7:
-          answerField.innerHTML = `Число <br><span class="text-color">${answerNumberText}</span><br> — это ваше тайное число`;
-          break;
-        case 8:
-          answerField.innerHTML = `Вы сохранили число <br><span class="text-color">${answerNumberText}</span><br>в секрете`;
-          break;
-        case 9:
-          answerField.innerHTML = `Вы, похоже, задумали число <br><span class="text-color">${answerNumberText}</span>`;
-          break;
-        default:
-          answerField.innerHTML = "Так не бывает!";
-          break;
-      }
+      answerField.innerHTML = ansversIfOverOrLess(answerNumberText);
     }
   }
 });
@@ -275,186 +103,10 @@ document.getElementById("btnLess").addEventListener("click", function () {
       answerNumber = Math.floor((minValue + maxValue) / 2);
       orderNumber++;
       orderNumberField.innerText = orderNumber;
-      const phraseNumber = Math.ceil(Math.random() * 9);
-      // число прописью
-      const absAnswerNumber = Math.abs(answerNumber);
-      let units = absAnswerNumber % 20;
-      let tens = (absAnswerNumber % 100) - units;
-      let hundreds = (absAnswerNumber % 1000) - units - tens;
-      let answerNumberStr;
-      // hundreds
-      switch (hundreds) {
-        case 100:
-          hundreds = "сто";
-          break;
-        case 200:
-          hundreds = "двести";
-          break;
-        case 300:
-          hundreds = "триста";
-          break;
-        case 400:
-          hundreds = "четыреста";
-          break;
-        case 500:
-          hundreds = "пятьсот";
-          break;
-        case 600:
-          hundreds = "шестьсот";
-          break;
-        case 700:
-          hundreds = "семьсот";
-          break;
-        case 800:
-          hundreds = "восемьсот";
-          break;
-        case 900:
-          hundreds = "девятьсот";
-          break;
-        default:
-          hundreds = "";
-          break;
-      }
-
-      // tens
-      switch (tens) {
-        case 20:
-          tens = "двадцать";
-          break;
-        case 30:
-          tens = "тридцать";
-          break;
-        case 40:
-          tens = "сорок";
-          break;
-        case 50:
-          tens = "пятьдесят";
-          break;
-        case 60:
-          tens = "шестьдесят";
-          break;
-        case 70:
-          tens = "семьдесят";
-          break;
-        case 80:
-          tens = "восемьдесят";
-          break;
-        case 90:
-          tens = "девяносто";
-          break;
-        default:
-          tens = "";
-          break;
-      }
-
-      // units
-
-      switch (units) {
-        case 1:
-          units = "один";
-          break;
-        case 2:
-          units = "два";
-          break;
-        case 3:
-          units = "три";
-          break;
-        case 4:
-          units = "четыре";
-          break;
-        case 5:
-          units = "пять";
-          break;
-        case 6:
-          units = "шесть";
-          break;
-        case 7:
-          units = "семь";
-          break;
-        case 8:
-          units = "восемь";
-          break;
-        case 9:
-          units = "девять";
-          break;
-        case 10:
-          units = "десять";
-          break;
-        case 11:
-          units = "одиннадцать";
-          break;
-        case 12:
-          units = "двенадцать";
-          break;
-        case 13:
-          units = "тринадцать";
-          break;
-        case 14:
-          units = "четырнадцать";
-          break;
-        case 15:
-          units = "пятнадцать";
-          break;
-        case 16:
-          units = "шестнадцать";
-          break;
-        case 17:
-          units = "семьнадцать";
-          break;
-        case 18:
-          units = "восемьнадцать";
-          break;
-        case 19:
-          units = "девятнадцать";
-          break;
-        default:
-          units = "";
-          break;
-      }
-      if (answerNumber < 20) {
-        answerNumberStr = units;
-      } else if (answerNumber < 100) {
-        answerNumberStr = tens + " " + units;
-      } else if (answerNumber < 1000) {
-        answerNumberStr = hundreds + " " + tens + " " + units;
-      }
-      answerNumberStr =
-        answerNumber < 0 ? "минус " + answerNumberStr : answerNumberStr;
-      // КОНЕЦ число прописью
+      const answerNumberStr = numberToString(answerNumber);
       const answerNumberText =
         answerNumberStr.length < 20 ? answerNumberStr : answerNumber;
-      switch (phraseNumber) {
-        case 1:
-          answerField.innerHTML = `Число <br><span class="text-color">${answerNumberText}</span><br>стало вашим тайным выбором ?`;
-          break;
-        case 2:
-          answerField.innerHTML = `Наверое, это число — <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 3:
-          answerField.innerHTML = `Вы, похоже, задумали цифру <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 4:
-          answerField.innerHTML = `Ваше число — <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 5:
-          answerField.innerHTML = `Вы остановились на числе <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 6:
-          answerField.innerHTML = `Вы задумали число <br><span class="text-color">${answerNumberText}</span>?`;
-          break;
-        case 7:
-          answerField.innerHTML = `Число <br><span class="text-color">${answerNumberText}</span><br> — это ваше тайное число`;
-          break;
-        case 8:
-          answerField.innerHTML = `Вы сохранили число <br><span class="text-color">${answerNumberText}</span><br>в секрете`;
-          break;
-        case 9:
-          answerField.innerHTML = `Вы, похоже, задумали число <br><span class="text-color">${answerNumberText}</span>`;
-          break;
-        default:
-          answerField.innerHTML = "Так не бывает!";
-          break;
-      }
+      answerField.innerHTML = ansversIfOverOrLess(answerNumberText);
     }
   }
 });
@@ -498,3 +150,185 @@ document.getElementById("btnEqual").addEventListener("click", function () {
     gameRun = false;
   }
 });
+
+// число прописью
+
+function numberToString(number) {
+  const absAnswerNumber = Math.abs(number);
+  let units =
+    absAnswerNumber % 100 < 20 ? absAnswerNumber % 20 : absAnswerNumber % 10;
+  let tens = (absAnswerNumber % 100) - units;
+  let hundreds = (absAnswerNumber % 1000) - units - tens;
+  let answerNumberStr;
+
+  // hundreds
+  switch (hundreds) {
+    case 100:
+      hundreds = "сто";
+      break;
+    case 200:
+      hundreds = "двести";
+      break;
+    case 300:
+      hundreds = "триста";
+      break;
+    case 400:
+      hundreds = "четыреста";
+      break;
+    case 500:
+      hundreds = "пятьсот";
+      break;
+    case 600:
+      hundreds = "шестьсот";
+      break;
+    case 700:
+      hundreds = "семьсот";
+      break;
+    case 800:
+      hundreds = "восемьсот";
+      break;
+    case 900:
+      hundreds = "девятьсот";
+      break;
+    default:
+      hundreds = "";
+      break;
+  }
+
+  // tens
+  switch (tens) {
+    case 20:
+      tens = "двадцать";
+      break;
+    case 30:
+      tens = "тридцать";
+      break;
+    case 40:
+      tens = "сорок";
+      break;
+    case 50:
+      tens = "пятьдесят";
+      break;
+    case 60:
+      tens = "шестьдесят";
+      break;
+    case 70:
+      tens = "семьдесят";
+      break;
+    case 80:
+      tens = "восемьдесят";
+      break;
+    case 90:
+      tens = "девяносто";
+      break;
+    default:
+      tens = "";
+      break;
+  }
+
+  // units
+
+  switch (units) {
+    case 1:
+      units = "один";
+      break;
+    case 2:
+      units = "два";
+      break;
+    case 3:
+      units = "три";
+      break;
+    case 4:
+      units = "четыре";
+      break;
+    case 5:
+      units = "пять";
+      break;
+    case 6:
+      units = "шесть";
+      break;
+    case 7:
+      units = "семь";
+      break;
+    case 8:
+      units = "восемь";
+      break;
+    case 9:
+      units = "девять";
+      break;
+    case 10:
+      units = "десять";
+      break;
+    case 11:
+      units = "одиннадцать";
+      break;
+    case 12:
+      units = "двенадцать";
+      break;
+    case 13:
+      units = "тринадцать";
+      break;
+    case 14:
+      units = "четырнадцать";
+      break;
+    case 15:
+      units = "пятнадцать";
+      break;
+    case 16:
+      units = "шестнадцать";
+      break;
+    case 17:
+      units = "семьнадцать";
+      break;
+    case 18:
+      units = "восемьнадцать";
+      break;
+    case 19:
+      units = "девятнадцать";
+      break;
+    default:
+      units = "";
+      break;
+  }
+  answerNumberStr = hundreds + " " + tens + " " + units;
+  answerNumberStr = number < 0 ? "минус " + answerNumberStr : answerNumberStr;
+
+  return answerNumberStr;
+}
+
+// Фразы - предположения
+
+function ansversIfOverOrLess(answerNumberText) {
+  switch (Math.ceil(Math.random() * 9)) {
+    case 1:
+      return `Число <br><span class="text-color">${answerNumberText}</span><br>стало вашим тайным выбором ?`;
+      break;
+    case 2:
+      return `Наверое, это число — <br><span class="text-color">${answerNumberText}</span>?`;
+      break;
+    case 3:
+      return `Вы, похоже, задумали цифру <br><span class="text-color">${answerNumberText}</span>?`;
+      break;
+    case 4:
+      return `Ваше число — <br><span class="text-color">${answerNumberText}</span>?`;
+      break;
+    case 5:
+      return `Вы остановились на числе <br><span class="text-color">${answerNumberText}</span>?`;
+      break;
+    case 6:
+      return `Вы задумали число <br><span class="text-color">${answerNumberText}</span>?`;
+      break;
+    case 7:
+      return `Число <br><span class="text-color">${answerNumberText}</span><br> — это ваше тайное число`;
+      break;
+    case 8:
+      return `Вы сохранили число <br><span class="text-color">${answerNumberText}</span><br>в секрете`;
+      break;
+    case 9:
+      return `Вы, похоже, задумали число <br><span class="text-color">${answerNumberText}</span>`;
+      break;
+    default:
+      return "Так не бывает!";
+      break;
+  }
+}
